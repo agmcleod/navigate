@@ -6,8 +6,9 @@ game.PlayScreen = me.ScreenObject.extend({
     // reset the score
     game.data.score = 0;
 
-    me.game.world.add(new game.Background());
-    me.game.world.add(new game.HUD.Container());
+    me.game.world.addChild(new game.Background());
+    me.game.world.addChild(new game.HUD.Container());
+    me.game.world.addChild(new game.Piece());
   },
 
 
