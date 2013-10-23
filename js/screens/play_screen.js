@@ -10,6 +10,7 @@ game.PlayScreen = me.ScreenObject.extend({
     me.game.world.addChild(new game.Background());
     me.game.world.addChild(new game.HUD.Container());
     game.piece = new game.Piece();
+    game.track = new game.Track();
     me.game.world.addChild(game.piece);
   },
 

@@ -36,16 +36,10 @@ game.HUD.ScoreItem = me.Renderable.extend({
    * constructor
    */
   init: function(x, y) {
-
-    // call the parent constructor 
-    // (size does not matter here)
     this.parent(new me.Vector2d(x, y), 10, 10); 
-
-    // local copy of the global score
-    this.score = -1;
-
-    // make sure we use screen coordinates
+    this.score = 0;
     this.floating = true;
+    this.font = new me.Font('Verdana', '18px', '#400');
   },
 
   /**
@@ -62,7 +56,7 @@ game.HUD.ScoreItem = me.Renderable.extend({
    * draw the score
    */
   draw : function (context) {
-    // draw it baby !
+    this.font.draw(context, this.score, this.pos.x, this.pos.y);
   }
 
 });
