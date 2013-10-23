@@ -5,10 +5,12 @@ game.PlayScreen = me.ScreenObject.extend({
   onResetEvent : function() {  
     // reset the score
     game.data.score = 0;
-
+    me.input.bindKey(me.input.KEY.LEFT, 'left');
+    me.input.bindKey(me.input.KEY.RIGHT, 'right');
     me.game.world.addChild(new game.Background());
     me.game.world.addChild(new game.HUD.Container());
-    me.game.world.addChild(new game.Piece());
+    game.piece = new game.Piece();
+    me.game.world.addChild(game.piece);
   },
 
 
@@ -18,5 +20,7 @@ game.PlayScreen = me.ScreenObject.extend({
   onDestroyEvent : function() {
     // remove the HUD from the game world
     me.game.world.removeChild(me.game.world.getEntityByProp("name", "HUD")[0]);
+    me.input.unbindKey(me.input.KEY.LEFT);
+    me.input.unbindKey(me.input.KEY.RIGHT);
   }
 });
