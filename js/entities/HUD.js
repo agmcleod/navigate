@@ -39,7 +39,7 @@ game.HUD.ScoreItem = me.Renderable.extend({
     this.parent(new me.Vector2d(x, y), 10, 10); 
     this.score = 0;
     this.floating = true;
-    this.font = new me.Font('Verdana', '18px', '#400');
+    this.font = new me.Font('Verdana', '24px', '#400');
   },
 
   /**

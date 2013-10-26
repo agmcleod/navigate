@@ -3,7 +3,7 @@ game.Piece = me.Renderable.extend({
     var d = 64;
     this.parent(new me.Vector2d(me.game.viewport.width / 2 - d, me.game.viewport.height - d - 20), d, d);
     this.d = d;
-    this.z = 2;
+    this.z = 3;
   },
   
   draw : function(context) {
@@ -22,11 +22,11 @@ game.Piece = me.Renderable.extend({
   update : function() {
     var moved = false;
     if(me.input.isKeyPressed('left')) {
-      this.pos.x -= 20 * me.timer.tick;
+      this.pos.x -= 10 * me.timer.tick;
       moved = true;
     }
     else if(me.input.isKeyPressed('right')) {
-      this.pos.x += 20 * me.timer.tick;
+      this.pos.x += 10 * me.timer.tick;
       moved = true;
     }
     if(moved) {

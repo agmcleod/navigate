@@ -5,6 +5,6 @@ game.Background = me.Renderable.extend({
   },
 
   draw : function(ctx) {
-    me.video.clearSurface(ctx, '#fff');
+    me.video.clearSurface(ctx, '#fdeeaa');
   }
 });
