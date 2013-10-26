@@ -3,13 +3,15 @@
   game.Track = me.Renderable.extend({
     init : function() {
       var half = me.game.viewport.width / 2;
-      var startX = half - 150;
+      var startX = half - variableWidth / 2;
       var freq = Number.prototype.random(4, 6);
       this.leftVectors = Array(freq);
-      for(var i = 0; i <= freq; i++) {
-        var y = i / freq * me.game.viewport.height;
+      var i = 0;
+      for(var p = freq; p >= 0; p--) {
+        var y = p / freq * me.game.viewport.height;
         var rx = Number.prototype.random(-20, 20);
         this.leftVectors[i] = new me.Vector2d(startX + rx, y);
+        i++;
       }
       this.parent(new me.Vector2d(0, 0), me.game.viewport.width, me.game.viewport.height);
       this.z = 2;
@@ -23,7 +25,7 @@
         var vector = this.leftVectors[v];
         context.lineTo(vector.x, vector.y);
       }
-      for(var v = this.leftVectors.length - 1; v > -1; v--) {
+      for(var v = this.leftVectors.length - 1; v >= 0; v--) {
         var vector = this.leftVectors[v];
         context.lineTo(vector.x + variableWidth, vector.y);
       }
@@ -33,7 +35,16 @@
     },
 
     update : function() {
-
+      for(var i = 0; i < this.leftVectors.length; i++) {
+        this.leftVectors[i].y += 1;
+      }
+      if(this.leftVectors[1].y > me.game.viewport.height) {
+        this.leftVectors.slice(0, 1);
+      }
+      if(this.leftVectors[this.leftVectors.length-1].y >= 0) {
+        var x = me.game.viewport.width / 2 - variableWidth / 2 + (Number.prototype.random(-20, 20));
+        this.leftVectors.push(new me.Vector2d(x, -1 * Number.prototype.random(100, 130)));
+      }
     }
   });
 }).call(this);
