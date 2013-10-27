@@ -12,7 +12,7 @@ game.PlayScreen = me.ScreenObject.extend({
     game.piece = new game.Piece();
     game.track = new game.Track();
     me.game.world.addChild(game.piece);
-    me.game.world.addChild(game.track)
+    me.game.world.addChild(game.track);
   },
 
 

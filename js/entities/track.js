@@ -33,6 +33,16 @@
       context.lineTo(this.leftVectors[0].x, this.leftVectors[0].y);
       context.fillStyle = '#fff';
       context.fill();
+      // context.fillStyle = '#f00';
+      // for(var i = 0; i < xBorders.length; i++) {
+      //   context.fillRect(xBorders[i], game.piece.pos.y, 20, 20);
+      // }
+      
+      context.restore();
+    },
+    
+    getXBorders : function() {
+      return xBorders;
     },
     
     update : function() {
@@ -50,19 +60,21 @@
       this.updateXBorders();
     },
 
-    updateXBorders : function(forY) {
+    updateXBorders : function() {
+      var forY = game.piece.pos.y;
       var pointOne, pointTwo;
       for(var i = 0; i < this.leftVectors.length; i++) {
         var vector = this.leftVectors[i];
         if(vector.y < forY) {
           pointOne = this.leftVectors[i-1];
           pointTwo = vector;
+          break;
         }
       }
       
       var slope = game.math.slope(pointOne, pointTwo);
-      xBorders[0] = game.math.xFromSlope(game.piece.pos.y, slope, game.math.getYIntercept(pointOne, slope));
-      xBorders[1] = xBorders[0].x + variableWidth;
+      xBorders[0] = game.math.xFromSlope(forY, slope, game.math.getYIntercept(pointOne, slope));
+      xBorders[1] = xBorders[0] + variableWidth;
     },
   });
 }).call(this);
