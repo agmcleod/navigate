@@ -1,5 +1,6 @@
 (function() {
   var variableWidth = 300;
+  var xBorders = Array(2);
   game.Track = me.Renderable.extend({
     init : function() {
       var half = me.game.viewport.width / 2;
@@ -33,7 +34,7 @@
       context.fillStyle = '#fff';
       context.fill();
     },
-
+    
     update : function() {
       for(var i = 0; i < this.leftVectors.length; i++) {
         this.leftVectors[i].y += 1;
@@ -45,6 +46,23 @@
         var x = me.game.viewport.width / 2 - variableWidth / 2 + (Number.prototype.random(-20, 20));
         this.leftVectors.push(new me.Vector2d(x, -1 * Number.prototype.random(100, 130)));
       }
-    }
+      
+      this.updateXBorders();
+    },
+
+    updateXBorders : function(forY) {
+      var pointOne, pointTwo;
+      for(var i = 0; i < this.leftVectors.length; i++) {
+        var vector = this.leftVectors[i];
+        if(vector.y < forY) {
+          pointOne = this.leftVectors[i-1];
+          pointTwo = vector;
+        }
+      }
+      
+      var slope = game.math.slope(pointOne, pointTwo);
+      xBorders[0] = game.math.xFromSlope(game.piece.pos.y, slope, game.math.getYIntercept(pointOne, slope));
+      xBorders[1] = xBorders[0].x + variableWidth;
+    },
   });
 }).call(this);

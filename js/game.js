@@ -10,7 +10,7 @@ var game = {
   
   
   // Run on page load.
-  "onload" : function () {
+  onload : function () {
     // Initialize the video.
     if (!me.video.init("screen", 960, 640, true, '1')) {
       alert("Your browser does not support HTML5 canvas.");
@@ -38,7 +38,7 @@ var game = {
   },
 
   // Run on game resources loaded.
-  "loaded" : function () {
+  loaded : function () {
     me.state.set(me.state.PLAY, new game.PlayScreen());
 
     // Start the game.
