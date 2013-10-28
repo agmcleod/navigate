@@ -1,4 +1,7 @@
 game.PlayScreen = me.ScreenObject.extend({
+  init : function() {
+    this.parent(true);
+  },
   /**  
    *  action to perform on state change
    */
@@ -24,5 +27,12 @@ game.PlayScreen = me.ScreenObject.extend({
     me.game.world.removeChild(me.game.world.getEntityByProp("name", "HUD")[0]);
     me.input.unbindKey(me.input.KEY.LEFT);
     me.input.unbindKey(me.input.KEY.RIGHT);
+  },
+  
+  update : function() {
+    var xBorders = game.track.getXBorders();
+    if(game.piece.hitsEdge(xBorders)) {
+      // end scenario
+    }
   }
 });

@@ -18,6 +18,10 @@ game.Piece = me.Renderable.extend({
     context.fillRect(this.pos.x, this.pos.y, this.d, this.d);
     context.restore();
   },
+  
+  hitsEdge : function() {
+  	
+  },
 
   update : function() {
     var moved = false;
