@@ -33,10 +33,10 @@
       context.lineTo(this.leftVectors[0].x, this.leftVectors[0].y);
       context.fillStyle = '#fff';
       context.fill();
-      context.fillStyle = '#f00';
+      /* context.fillStyle = '#f00';
       for(var i = 0; i < xBorders.length; i++) {
         context.fillRect(xBorders[i], game.piece.pos.y + (game.piece.d / 2), 20, 20);
-      }
+      } */
 
       context.restore();
     },

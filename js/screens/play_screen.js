@@ -2,10 +2,10 @@ game.PlayScreen = me.ScreenObject.extend({
   init : function() {
     this.parent(true);
   },
-  /**  
+  /**
    *  action to perform on state change
    */
-  onResetEvent : function() {  
+  onResetEvent : function() {
     // reset the score
     game.data.score = 0;
     me.input.bindKey(me.input.KEY.LEFT, 'left');
@@ -19,7 +19,7 @@ game.PlayScreen = me.ScreenObject.extend({
   },
 
 
-  /**  
+  /**
    *  action to perform when leaving this screen (state change)
    */
   onDestroyEvent : function() {
@@ -28,11 +28,11 @@ game.PlayScreen = me.ScreenObject.extend({
     me.input.unbindKey(me.input.KEY.LEFT);
     me.input.unbindKey(me.input.KEY.RIGHT);
   },
-  
+
   update : function() {
     var xBorders = game.track.getXBorders();
     if(game.piece.hitsEdge(xBorders)) {
-      console.log('hits edge');
+
     }
   }
 });

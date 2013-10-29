@@ -5,7 +5,7 @@ game.Piece = me.Renderable.extend({
     this.d = d;
     this.z = 3;
   },
-  
+
   draw : function(context) {
     context.save();
     var r = this.d / 2;
@@ -16,11 +16,15 @@ game.Piece = me.Renderable.extend({
 
     context.fillStyle = gradient;
     context.fillRect(this.pos.x, this.pos.y, this.d, this.d);
+
+    // context.strokeStyle = '#000';
+    // context.strokeRect(this.pos.x, this.pos.y, this.d, this.d);
+
     context.restore();
   },
-  
+
   hitsEdge : function(xPositions) {
-    var x = this.pos.x + this.d / 2;
+    var x = this.pos.x;
     return x <= xPositions[0] || (x + this.d) >= xPositions[1];
   },
 
