@@ -32,7 +32,9 @@ game.PlayScreen = me.ScreenObject.extend({
   update : function() {
     var xBorders = game.track.getXBorders();
     if(game.piece.hitsEdge(xBorders)) {
-
+      (function() {
+        me.game.reset();
+      }).defer();
     }
   }
 });
