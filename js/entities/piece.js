@@ -19,8 +19,9 @@ game.Piece = me.Renderable.extend({
     context.restore();
   },
   
-  hitsEdge : function() {
-  	
+  hitsEdge : function(xPositions) {
+    var x = this.pos.x + this.d / 2;
+    return x <= xPositions[0] || (x + this.d) >= xPositions[1];
   },
 
   update : function() {

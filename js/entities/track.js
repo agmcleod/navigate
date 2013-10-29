@@ -33,18 +33,18 @@
       context.lineTo(this.leftVectors[0].x, this.leftVectors[0].y);
       context.fillStyle = '#fff';
       context.fill();
-      /* context.fillStyle = '#f00';
+      context.fillStyle = '#f00';
       for(var i = 0; i < xBorders.length; i++) {
         context.fillRect(xBorders[i], game.piece.pos.y + (game.piece.d / 2), 20, 20);
-      } */
-      
+      }
+
       context.restore();
     },
-    
+
     getXBorders : function() {
       return xBorders;
     },
-    
+
     update : function() {
       for(var i = 0; i < this.leftVectors.length; i++) {
         this.leftVectors[i].y += 1;
@@ -56,7 +56,7 @@
         var x = me.game.viewport.width / 2 - variableWidth / 2 + (Number.prototype.random(-20, 20));
         this.leftVectors.push(new me.Vector2d(x, -1 * Number.prototype.random(100, 130)));
       }
-      
+
       this.updateXBorders();
     },
 
@@ -71,7 +71,7 @@
           break;
         }
       }
-      
+
       var slope = game.math.slope(pointOne, pointTwo);
       xBorders[0] = game.math.xFromSlope(forY, slope, game.math.getYIntercept(pointOne, slope));
       xBorders[1] = xBorders[0] + variableWidth;
