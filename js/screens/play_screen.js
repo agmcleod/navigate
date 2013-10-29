@@ -24,7 +24,6 @@ game.PlayScreen = me.ScreenObject.extend({
    */
   onDestroyEvent : function() {
     // remove the HUD from the game world
-    me.game.world.removeChild(me.game.world.getEntityByProp("name", "HUD")[0]);
     me.input.unbindKey(me.input.KEY.LEFT);
     me.input.unbindKey(me.input.KEY.RIGHT);
   },
@@ -34,6 +33,7 @@ game.PlayScreen = me.ScreenObject.extend({
     if(game.piece.hitsEdge(xBorders)) {
       (function() {
         me.game.reset();
+        game.loaded();
       }).defer();
     }
   }
