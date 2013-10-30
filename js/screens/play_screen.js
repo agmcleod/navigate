@@ -16,6 +16,7 @@ game.PlayScreen = me.ScreenObject.extend({
     game.track = new game.Track();
     me.game.world.addChild(game.piece);
     me.game.world.addChild(game.track);
+    //this.name = 'playscreen';
   },
 
 
