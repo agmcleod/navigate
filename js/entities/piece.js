@@ -38,6 +38,18 @@ game.Piece = me.Renderable.extend({
       this.pos.x += 10 * me.timer.tick;
       moved = true;
     }
+
+    if(typeof me.device.beta !== 'undefined') {
+       if (me.device.beta > 10) {
+         this.pos.x += (15 * Math.abs(me.device.beta) / 100) * me.timer.tick;
+         moved = true
+       }
+       else if(me.device.beta < -10) {
+         this.pos.x -= (15 * Math.abs(me.device.beta) / 100) * me.timer.tick;
+         moved = true;
+       }
+    }
+
     if(moved) {
       this.pos.x = this.pos.x.clamp(0, me.game.viewport.width - this.d);
     }

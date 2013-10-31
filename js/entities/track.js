@@ -1,6 +1,8 @@
 (function() {
   var variableWidth = 300;
   var xBorders = Array(2);
+  var yVelocity = 1;
+  var xVarianceAmount = 30;
   game.Track = me.Renderable.extend({
     init : function() {
       var half = me.game.viewport.width / 2;
@@ -10,12 +12,12 @@
       var i = 0;
       for(var p = freq; p >= 0; p--) {
         var y = p / freq * me.game.viewport.height;
-        var rx = Number.prototype.random(-20, 20);
-        this.leftVectors[i] = new me.Vector2d(startX + rx, y);
+        this.leftVectors[i] = new me.Vector2d(startX + this.edgeVariance(), y);
         i++;
       }
       this.parent(new me.Vector2d(0, 0), me.game.viewport.width, me.game.viewport.height);
       this.z = 2;
+      this.time = me.timer.getTime();
     },
 
     draw : function(context) {
@@ -37,8 +39,11 @@
       for(var i = 0; i < xBorders.length; i++) {
         context.fillRect(xBorders[i], game.piece.pos.y + (game.piece.d / 2), 20, 20);
       } */
-
       context.restore();
+    },
+
+    edgeVariance : function() {
+      return Number.prototype.random(-xVarianceAmount, xVarianceAmount);
     },
 
     getXBorders : function() {
@@ -47,17 +52,30 @@
 
     update : function() {
       for(var i = 0; i < this.leftVectors.length; i++) {
-        this.leftVectors[i].y += 1;
+        this.leftVectors[i].y += yVelocity;
       }
       if(this.leftVectors[1].y > me.game.viewport.height) {
         this.leftVectors.slice(0, 1);
       }
       if(this.leftVectors[this.leftVectors.length-1].y >= 0) {
-        var x = me.game.viewport.width / 2 - variableWidth / 2 + (Number.prototype.random(-20, 20));
+        var x = me.game.viewport.width / 2 - variableWidth / 2 + this.edgeVariance();
         this.leftVectors.push(new me.Vector2d(x, -1 * Number.prototype.random(100, 130)));
       }
 
       this.updateXBorders();
+
+      if(me.timer.getTime() - this.time > 3000) {
+        if(variableWidth > 150) {
+          variableWidth -= 10;
+        }
+        else {
+          xVarianceAmount += 2;
+        }
+        yVelocity += 0.2;
+        this.time = me.timer.getTime();
+      }
+
+      return true;
     },
 
     updateXBorders : function() {

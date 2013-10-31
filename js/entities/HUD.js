@@ -46,7 +46,8 @@ game.HUD.ScoreItem = me.Renderable.extend({
    * update function
    */
   update : function () {
-    if(this.score !== me.game.score) {
+    if(this.score !== game.data.score) {
+      this.score = game.data.score;
       return true;
     }
     return false;
@@ -56,7 +57,7 @@ game.HUD.ScoreItem = me.Renderable.extend({
    * draw the score
    */
   draw : function (context) {
-    this.font.draw(context, this.score, this.pos.x, this.pos.y);
+    this.font.draw(context, "Score: " + this.score, this.pos.x, this.pos.y);
   }
 
 });
