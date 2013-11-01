@@ -18,6 +18,10 @@
       this.parent(new me.Vector2d(0, 0), me.game.viewport.width, me.game.viewport.height);
       this.z = 2;
       this.time = me.timer.getTime();
+      variableWidth = 300;
+      xBorders = Array(2);
+      yVelocity = 1;
+      xVarianceAmount = 30;
     },
 
     draw : function(context) {
@@ -35,10 +39,6 @@
       context.lineTo(this.leftVectors[0].x, this.leftVectors[0].y);
       context.fillStyle = '#fff';
       context.fill();
-      /* context.fillStyle = '#f00';
-      for(var i = 0; i < xBorders.length; i++) {
-        context.fillRect(xBorders[i], game.piece.pos.y + (game.piece.d / 2), 20, 20);
-      } */
       context.restore();
     },
 

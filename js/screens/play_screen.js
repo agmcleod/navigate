@@ -1,6 +1,6 @@
 game.PlayScreen = me.ScreenObject.extend({
   init : function() {
-    this.parent(true, true);
+    this.parent(true);
   },
   /**
    *  action to perform on state change
